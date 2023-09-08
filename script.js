@@ -3,29 +3,42 @@ const valor = document.querySelector("input")
 const opcao = document.querySelector(".option")
 const conversorDe = document.querySelector(".conversor-de")
 
-const dolar = 0.20
-const euro = 0.19
-const libra = 0.16
-const bitcoin = 0.0000075
 
-const imprimirTela = () => {
+const imprimirTela = async () => {
+
+    const data = await fetch("https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,BTC-BRL,GBP-BRL").then(response => response.json())
+    const dolar = data.USDBRL.high
+    const euro = data.EURBRL.high
+    const libra = data.GBPBRL.high
+    const bitcoin = data.BTCBRL.high
+  
     if (opcao.value === "US$ Dólar americano") {
 
         if (conversorDe.value === "real") {
             document.querySelector(".real").innerHTML = new Intl.NumberFormat('pt-BR',
                 { style: 'currency', currency: 'BRL' }
             ).format(valor.value)
-            document.querySelector(".dolar").innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(valor.value * dolar)
+            document.querySelector(".dolar").innerHTML = new Intl.NumberFormat('en-US', {
+                style: 'currency', currency: 'USD'
+            }).format(valor.value * dolar)
         }
 
         if (conversorDe.value === "dolar") {
-            document.querySelector(".real").innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(valor.value)
-            document.querySelector(".dolar").innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(valor.value)
+            document.querySelector(".real").innerHTML = new Intl.NumberFormat('en-US', {
+                style: 'currency', currency: 'USD'
+            }).format(valor.value)
+            document.querySelector(".dolar").innerHTML = new Intl.NumberFormat('en-US', {
+                style: 'currency', currency: 'USD'
+            }).format(valor.value)
         }
 
         if (conversorDe.value === "euro") {
-            document.querySelector(".real").innerHTML = new Intl.NumberFormat('de-De', { style: 'currency', currency: 'EUR' }).format(valor.value);
-            document.querySelector(".dolar").innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(valor.value * 1.08)
+            document.querySelector(".real").innerHTML = new Intl.NumberFormat('de-De', {
+                style: 'currency', currency: 'EUR'
+            }).format(valor.value);
+            document.querySelector(".dolar").innerHTML = new Intl.NumberFormat('en-US', {
+                style: 'currency', currency: 'USD'
+            }).format(valor.value * 1.08)
         }
     }
 
@@ -35,16 +48,26 @@ const imprimirTela = () => {
             document.querySelector(".real").innerHTML = new Intl.NumberFormat('pt-BR',
                 { style: 'currency', currency: 'BRL' }
             ).format(valor.value)
-            document.querySelector(".dolar").innerHTML = new Intl.NumberFormat('de-De', { style: 'currency', currency: 'EUR' }).format(valor.value * euro);
+            document.querySelector(".dolar").innerHTML = new Intl.NumberFormat('de-De', {
+                style: 'currency', currency: 'EUR'
+            }).format(valor.value * euro);
         }
         if (conversorDe.value === "dolar") {
-            document.querySelector(".real").innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(valor.value)
-            document.querySelector(".dolar").innerHTML = new Intl.NumberFormat('de-De', { style: 'currency', currency: 'EUR' }).format(valor.value * 0.92)
+            document.querySelector(".real").innerHTML = new Intl.NumberFormat('en-US', {
+                style: 'currency', currency: 'USD'
+            }).format(valor.value)
+            document.querySelector(".dolar").innerHTML = new Intl.NumberFormat('de-De', {
+                style: 'currency', currency: 'EUR'
+            }).format(valor.value * 0.92)
         }
 
         if (conversorDe.value === "euro") {
-            document.querySelector(".real").innerHTML = new Intl.NumberFormat('de-De', { style: 'currency', currency: 'EUR' }).format(valor.value)
-            document.querySelector(".dolar").innerHTML = new Intl.NumberFormat('de-De', { style: 'currency', currency: 'EUR' }).format(valor.value)
+            document.querySelector(".real").innerHTML = new Intl.NumberFormat('de-De', {
+                style: 'currency', currency: 'EUR'
+            }).format(valor.value)
+            document.querySelector(".dolar").innerHTML = new Intl.NumberFormat('de-De', {
+                style: 'currency', currency: 'EUR'
+            }).format(valor.value)
         }
     }
 
@@ -52,19 +75,30 @@ const imprimirTela = () => {
 
         if (conversorDe.value === "real") {
             document.querySelector(".real").innerHTML = new Intl.NumberFormat('pt-BR',
-                { style: 'currency', currency: 'BRL' }
-            ).format(valor.value)
-            document.querySelector(".dolar").innerHTML = new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP' }).format(valor.value * libra);
+                {
+                    style: 'currency', currency: 'BRL'
+                }).format(valor.value)
+            document.querySelector(".dolar").innerHTML = new Intl.NumberFormat('en-GB', {
+                style: 'currency', currency: 'GBP'
+            }).format(valor.value * libra);
         }
 
         if (conversorDe.value === "dolar") {
-            document.querySelector(".real").innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(valor.value)
-            document.querySelector(".dolar").innerHTML = new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP' }).format(valor.value * 0.80)
+            document.querySelector(".real").innerHTML = new Intl.NumberFormat('en-US', {
+                style: 'currency', currency: 'USD'
+            }).format(valor.value)
+            document.querySelector(".dolar").innerHTML = new Intl.NumberFormat('en-GB', {
+                style: 'currency', currency: 'GBP'
+            }).format(valor.value * 0.80)
         }
 
         if (conversorDe.value === "euro") {
-            document.querySelector(".real").innerHTML = new Intl.NumberFormat('de-De', { style: 'currency', currency: 'EUR' }).format(valor.value)
-            document.querySelector(".dolar").innerHTML = new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP' }).format(valor.value * 0.87)
+            document.querySelector(".real").innerHTML = new Intl.NumberFormat('de-De', {
+                style: 'currency', currency: 'EUR'
+            }).format(valor.value)
+            document.querySelector(".dolar").innerHTML = new Intl.NumberFormat('en-GB', {
+                style: 'currency', currency: 'GBP'
+            }).format(valor.value * 0.87)
         }
     }
 
@@ -77,12 +111,16 @@ const imprimirTela = () => {
             document.querySelector(".dolar").innerHTML = valor.value * bitcoin + " BTC"
         }
         if (conversorDe.value === "dolar") {
-            document.querySelector(".real").innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(valor.value)
+            document.querySelector(".real").innerHTML = new Intl.NumberFormat('en-US', {
+                style: 'currency', currency: 'USD'
+            }).format(valor.value)
             document.querySelector(".dolar").innerHTML = valor.value * 0.000037 + " BTC"
         }
 
         if (conversorDe.value === "euro") {
-            document.querySelector(".real").innerHTML = new Intl.NumberFormat('de-De', { style: 'currency', currency: 'EUR' }).format(valor.value)
+            document.querySelector(".real").innerHTML = new Intl.NumberFormat('de-De', {
+                style: 'currency', currency: 'EUR'
+            }).format(valor.value)
             document.querySelector(".dolar").innerHTML = valor.value * 0.000040 + " BTC"
         }
 
@@ -99,7 +137,9 @@ const imprimirTela = () => {
             ).format(valor.value)
         }
         if (conversorDe.value === "dolar") {
-            document.querySelector(".real").innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(valor.value)
+            document.querySelector(".real").innerHTML = new Intl.NumberFormat('en-US', {
+                style: 'currency', currency: 'USD'
+            }).format(valor.value)
             document.querySelector(".dolar").innerHTML = new Intl.NumberFormat('pt-BR',
                 { style: 'currency', currency: 'BRL' }
             ).format(valor.value * 4.97)
@@ -107,7 +147,9 @@ const imprimirTela = () => {
         }
 
         if (conversorDe.value === "euro") {
-            document.querySelector(".real").innerHTML = new Intl.NumberFormat('de-De', { style: 'currency', currency: 'EUR' }).format(valor.value)
+            document.querySelector(".real").innerHTML = new Intl.NumberFormat('de-De', {
+                style: 'currency', currency: 'EUR'
+            }).format(valor.value)
             document.querySelector(".dolar").innerHTML = new Intl.NumberFormat('pt-BR',
                 { style: 'currency', currency: 'BRL' }
             ).format(valor.value * 5.37)
@@ -131,6 +173,7 @@ const converterMoeda = () => {
         document.querySelector(".bandeira").src = "./assets/libra.png"
         document.querySelector(".moeda").innerHTML = "Libra"
     }
+    
 
     if (opcao.value === "Bitcoin") {
         document.querySelector(".bandeira").src = "./assets/bitcoin.png"
@@ -163,6 +206,12 @@ function converterDe() {
         document.querySelector(".currency").innerHTML = "Euro"
         document.querySelector(".flag").src = "./assets/Euro.png"
         valor.placeholder = "Valor em Euros"
+    }
+
+    if (conversorDe.value === "libra") {
+        document.querySelector(".currency").innerHTML = "Libra"
+        document.querySelector(".flag").src = "./assets/libra.png"
+        valor.placeholder = "Valor em Libras"
     }
 
     imprimirTela()
